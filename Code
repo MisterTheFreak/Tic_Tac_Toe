@@ -1,0 +1,318 @@
+board = [[0, 0, 0],
+         [0, 0, 0],
+         [0, 0, 0]]
+
+board_one = board[0]
+board_two = board[1]
+board_three = board[2]
+
+first_vertical_one = False
+first_vertical_two = False
+first_vertical_three = False
+
+second_vertical_one = False
+second_vertical_two = False
+second_vertical_three = False
+
+first_crossed_one = False
+first_crossed_two = False
+
+second_crossed_one = False
+second_crossed_two = False
+
+m = 0
+
+output_one = ""
+output_two = ""
+output_three = ""
+
+win = 0
+
+numbers = []
+
+error = 1
+
+print('''
+Here's the board:
+''')
+
+for i in range(3):
+    print("|__|" * 3)
+
+name_one = input('''
+Player one write your name: ''')
+name_two = input("Player two write your name: ")
+
+while m < 8:
+    error = 1
+    first_play = int(input(f'''
+{name_one} choose your square following this order:
+
+[1, 2, 3
+4, 5, 6
+7, 8, 9]
+>'''))
+    if first_play == 1 and first_play not in numbers:
+        board_one[0] = 1
+        numbers.append(1)
+    elif first_play == 2 and first_play not in numbers:
+        board_one[1] = 1
+        numbers.append(2)
+    elif first_play == 3 and first_play not in numbers:
+        board_one[2] = 1
+        numbers.append(3)
+    elif first_play == 4 and first_play not in numbers:
+        board_two[0] = 1
+        numbers.append(4)
+    elif first_play == 5 and first_play not in numbers:
+        board_two[1] = 1
+        numbers.append(5)
+    elif first_play == 6 and first_play not in numbers:
+        board_two[2] = 1
+        numbers.append(6)
+    elif first_play == 7 and first_play not in numbers:
+        board_three[0] = 1
+        numbers.append(7)
+    elif first_play == 8 and first_play not in numbers:
+        board_three[1] = 1
+        numbers.append(8)
+    elif first_play == 9 and first_play not in numbers:
+        board_three[2] = 1
+        numbers.append(9)
+    else:
+        print('''
+The square is already taken ! / I don't understand that number !
+''')
+        continue
+    first_play = 0
+    m = m + 1
+    for number in board_one:
+        if number == 0:
+            output_one = output_one + "|__|"
+        elif number == 1:
+            output_one = output_one + "| X|"
+        elif number == 2:
+            output_one = output_one + "| O|"
+    print(output_one)
+    output_one = ""
+    for number in board_two:
+        if number == 0:
+            output_two = output_two + "|__|"
+        elif number == 1:
+            output_two = output_two + "| X|"
+        elif number == 2:
+            output_two = output_two + "| O|"
+    print(output_two)
+    output_two = ""
+    for number in board_three:
+        if number == 0:
+            output_three = output_three + "|__|"
+        elif number == 1:
+            output_three = output_three + "| X|"
+        elif number == 2:
+            output_three = output_three + "| O|"
+    print(output_three)
+    output_three = ""
+    if board_one[0] == 1 and board_two[0] == 1 and board_three[0] == 1:
+        first_vertical_one = True
+    elif board_one[1] == 1 and board_two[1] == 1 and board_three[1] == 1:
+        first_vertical_two = True
+    elif board_one[2] == 1 and board_two[2] == 1 and board_three[2] == 1:
+        first_vertical_three = True
+    elif board_one[0] == 1 and board_two[1] == 1 and board_three[2] == 1:
+        first_crossed_one = True
+    elif board_one[2] == 1 and board_two[1] == 1 and board_three[0] == 1:
+        first_crossed_two = True
+
+    if first_crossed_one or first_crossed_two or first_vertical_three or first_vertical_one or first_vertical_two \
+            or board_one == [1, 1, 1] or board_two == [1, 1, 1] or board_three == [1, 1, 1]:
+        win = 1
+        break
+
+    while error == 1:
+        second_play = int(input(f'''
+{name_two} choose your square following this order:
+
+[1, 2, 3
+4, 5, 6
+7, 8, 9]
+>'''))
+        if second_play == 1 and second_play not in numbers:
+            board_one[0] = 2
+            numbers.append(1)
+            break
+        elif second_play == 2 and second_play not in numbers:
+            board_one[1] = 2
+            numbers.append(2)
+            break
+        elif second_play == 3 and second_play not in numbers:
+            board_one[2] = 2
+            numbers.append(3)
+            break
+        elif second_play == 4 and second_play not in numbers:
+            board_two[0] = 2
+            numbers.append(4)
+            break
+        elif second_play == 5 and second_play not in numbers:
+            board_two[1] = 2
+            numbers.append(5)
+            break
+        elif second_play == 6 and second_play not in numbers:
+            board_two[2] = 2
+            numbers.append(6)
+            break
+        elif second_play == 7 and second_play not in numbers:
+            board_three[0] = 2
+            numbers.append(7)
+            break
+        elif second_play == 8 and second_play not in numbers:
+            board_three[1] = 2
+            numbers.append(8)
+            break
+        elif second_play == 9 and second_play not in numbers:
+            board_three[2] = 2
+            numbers.append(9)
+            break
+        else:
+            print('''
+The square is already taken ! / I don't understand that number!
+''')
+            continue
+    second_play = 0
+    m = m + 1
+    for number in board_one:
+        if number == 0:
+            output_one = output_one + "|__|"
+        elif number == 1:
+            output_one = output_one + "| X|"
+        elif number == 2:
+            output_one = output_one + "| O|"
+    print(output_one)
+    output_one = ""
+    for number in board_two:
+        if number == 0:
+            output_two = output_two + "|__|"
+        elif number == 1:
+            output_two = output_two + "| X|"
+        elif number == 2:
+            output_two = output_two + "| O|"
+    print(output_two)
+    output_two = ""
+    for number in board_three:
+        if number == 0:
+            output_three = output_three + "|__|"
+        elif number == 1:
+            output_three = output_three + "| X|"
+        elif number == 2:
+            output_three = output_three + "| O|"
+    print(output_three)
+    output_three = ""
+    if board_one[0] == 2 and board_two[0] == 2 and board_three[0] == 2:
+        win = 1
+        break
+    elif board_one[1] == 2 and board_two[1] == 2 and board_three[1] == 2:
+        win = 1
+        break
+    elif board_one[2] == 2 and board_two[2] == 2 and board_three[2] == 2:
+        win = 1
+        break
+    elif board_one[0] == 2 and board_two[1] == 2 and board_three[2] == 2:
+        win = 1
+        break
+    elif board_one[2] == 2 and board_two[1] == 2 and board_three[0] == 2:
+        win = 1
+        break
+    elif board_one == [2, 2, 2] or board_two == [2, 2, 2] or board_three == [2, 2, 2]:
+        win = 1
+        break
+
+if win != 1:
+    first_play = int(input(f'''
+{name_one} choose your square following this order:
+
+[1, 2, 3
+4, 5, 6
+7, 8, 9]
+'''))
+    if first_play == 1:
+        board_one[0] = 1
+    elif first_play == 2:
+        board_one[1] = 1
+    elif first_play == 3:
+        board_one[2] = 1
+    elif first_play == 4:
+        board_two[0] = 1
+    elif first_play == 5:
+        board_two[1] = 1
+    elif first_play == 6:
+        board_two[2] = 1
+    elif first_play == 7:
+        board_three[0] = 1
+    elif first_play == 8:
+        board_three[1] = 1
+    elif first_play == 9:
+        board_three[2] = 1
+    first_play = 0
+
+    for number in board_one:
+        if number == 0:
+            output_one = output_one + "|__|"
+        elif number == 1:
+            output_one = output_one + "| X|"
+        elif number == 2:
+            output_one = output_one + "| O|"
+    print(output_one)
+    output_one = ""
+    for number in board_two:
+        if number == 0:
+            output_two = output_two + "|__|"
+        elif number == 1:
+            output_two = output_two + "| X|"
+        elif number == 2:
+            output_two = output_two + "| O|"
+    print(output_two)
+    output_two = ""
+
+    for number in board_three:
+        if number == 0:
+            output_three = output_three + "|__|"
+        elif number == 1:
+            output_three = output_three + "| X|"
+        elif number == 2:
+            output_three = output_three + "| O|"
+    print(output_three)
+    output_three = ""
+
+if board_one[0] == 1 and board_two[0] == 1 and board_three[0] == 1:
+    first_vertical_one = True
+elif board_one[1] == 1 and board_two[1] == 1 and board_three[1] == 1:
+    first_vertical_two = True
+elif board_one[2] == 1 and board_two[2] == 1 and board_three[2] == 1:
+    first_vertical_three = True
+elif board_one[0] == 1 and board_two[1] == 1 and board_three[2] == 1:
+    first_crossed_one = True
+elif board_one[2] == 1 and board_two[1] == 1 and board_three[0] == 1:
+    first_crossed_two = True
+
+if board_one[0] == 2 and board_two[0] == 2 and board_three[0] == 2:
+    second_vertical_one = True
+elif board_one[1] == 2 and board_two[1] == 2 and board_three[1] == 2:
+    second_vertical_two = True
+elif board_one[2] == 2 and board_two[2] == 2 and board_three[2] == 2:
+    second_vertical_three = True
+elif board_one[0] == 2 and board_two[1] == 2 and board_three[2] == 2:
+    second_crossed_one = True
+elif board_one[2] == 2 and board_two[1] == 2 and board_three[0] == 2:
+    second_crossed_two = True
+
+if board_one == [1, 1, 1] or board_two == [1, 1, 1] or board_three == [1, 1, 1] or first_vertical_one or \
+        first_vertical_two or first_vertical_three or first_crossed_one or first_crossed_two:
+    print(f'''
+{name_one} wins!''')
+elif board_one == [2, 2, 2] or board_two == [2, 2, 2] or board_three == [2, 2, 2] or second_vertical_one or \
+        second_vertical_two or second_vertical_three or second_crossed_one or second_crossed_two:
+    print(f'''
+{name_two} wins!''')
+else:
+    print('''
+It's a draw!''')
